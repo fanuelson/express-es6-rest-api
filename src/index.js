@@ -1,5 +1,6 @@
-import logger from  "./core/utils/logger";
+import logger from "./core/utils/logger";
 import express from 'express';
+import errorHandler from './core/error/error-handler';
 
 const app = express();
 const components = require('./components');
@@ -17,12 +18,13 @@ app.get('/', function (req, res) {
 app.use('/api', components);
 
 app.use((err, req, res, next) => {
+    const isBusinessError = errorHandler.handleError(err);
+
     res.status(err.httpStatus || 500);
-    if(err.payload) {
+    if (isBusinessError) {
         res.send(err);
     }else{
-
-        res.send("Internal Server Error");
+        res.send("Internal Server Error")
     }
     next(err);
 });
