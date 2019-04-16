@@ -5,7 +5,7 @@ import errorHandler from './core/error/error-handler';
 const app = express();
 const components = require('./components');
 
-const SERVER_PORT = process.env.SERVER_PORT || 3000;
+const SERVER_PORT = process.env.PORT || 3000;
 logger.info(`Starting application env=${process.env.NODE_ENV}`);
 
 // Loading routes and middlewares (interceptors and handlers)
