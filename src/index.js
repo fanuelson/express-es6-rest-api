@@ -1,9 +1,10 @@
-import logger from "./core/utils/logger";
+import logger from "@core/utils/logger";
 import express from 'express';
-import errorHandler from './core/error/error-handler';
+
+import errorHandler from '@core/error/error-handler';
+import components from '@components'
 
 const app = express();
-const components = require('./components');
 
 const SERVER_PORT = process.env.PORT || 3000;
 logger.info(`Starting application env=${process.env.NODE_ENV}`);
