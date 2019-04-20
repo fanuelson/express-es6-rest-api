@@ -11,6 +11,13 @@ const logger = createLogger({
     transports: [new transports.Console()]
 });
 
-module.exports.info = (message) => { logger.info(message); };
-module.exports.error = (message) => { logger.error(message); };
-module.exports.debug = (message) => { logger.debug(message); };
+module.exports.info = (error) => { logger.info(error); };
+module.exports.error = (error) => { 
+    if(error.isBusinessError) {
+        logger.error(JSON.stringify(error))
+    }else{
+        logger.error(error); 
+    }
+
+};
+module.exports.debug = (error) => { logger.debug(error); };
