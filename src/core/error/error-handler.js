@@ -1,4 +1,4 @@
-import logger from '../utils/logger';
+import logger from "@core/utils/logger";
 
 const handleError = (error) => {
     logger.error(error);
