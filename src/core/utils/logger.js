@@ -1,9 +1,9 @@
 const { createLogger, format, transports } = require("winston");
 const { combine, timestamp, printf, colorize } = format;
 
-const formatter = printf(info => {
-    return `${info.timestamp} ${info.level} :: ${info.message}`;
-});
+const formatCustom = (info) => `${info.timestamp} ${info.level} :: ${info.message}`;
+
+const formatter = printf(formatCustom);
 
 const logger = createLogger({
     level: process.env.LOG_LEVEL || "info",
