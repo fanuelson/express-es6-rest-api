@@ -1,13 +1,18 @@
-import logger from "@core/utils/logger";
+
 import express from 'express';
+import helmet from 'helmet';
 
+import logger from "@core/utils/logger";
 import errorHandler from '@core/error/error-handler';
-import components from '@components'
-
-const app = express();
+import components from '@components';
 
 const SERVER_PORT = process.env.PORT || 3000;
 logger.info(`Starting application env=${process.env.NODE_ENV}`);
+
+const app = express();
+
+//Security
+app.use(helmet());
 
 // Loading routes and middlewares (interceptors and handlers)
 app.use(express.json());
